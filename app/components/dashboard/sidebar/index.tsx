@@ -11,7 +11,7 @@ export default function Sidebar({ activeSection, setActiveSection }: SidebarProp
   const isActive = (section: string) => activeSection === section;
 
   return (
-    <div className="hidden sm:block lg:bg-[#F5F5F5] w-full lg:w-1/4 p-8 lg:mt-8 lg:rounded-lg  lg:h-full lg:min-h-screen">
+    <div className="hidden sm:block lg:bg-[#F5F5F5] w-full lg:w-1/4 p-8 lg:mt-8 lg:rounded-lg">
       <ul className="lg:space-y-6 lg:block flex justify-around">
         <li
           onClick={() => setActiveSection("dashboard")}
