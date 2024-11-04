@@ -5,7 +5,7 @@ export async function POST(request: Request) {
   const { email, password } = await request.json();
 
   if (!email || !password) {
-    return NextResponse.json({ message: 'Email and password are required' }, { status: 400 });
+    return NextResponse.json({ message: 'Email e senha são obrigatórios' }, { status: 400 });
   }
 
   try {
@@ -13,18 +13,18 @@ export async function POST(request: Request) {
     const users = await userRes.json();
 
     if (users.length === 0) {
-      return NextResponse.json({ message: 'User not found' }, { status: 404 });
+      return NextResponse.json({ message: 'Usuário não encontrado' }, { status: 404 });
     }
     const user = users[0];
 
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
-      return NextResponse.json({ message: 'Invalid email or password' }, { status: 401 });
+      return NextResponse.json({ message: 'Email ou senha inválidos' }, { status: 401 });
     }
 
-    return NextResponse.json({ message: 'Login successful', user: { id: user.id, email: user.email , name: user.name,balance: user.balance } });
+    return NextResponse.json({ message: 'Login realizado com sucesso', user: { id: user.id, email: user.email, name: user.name, balance: user.balance } });
   } catch (error) {
     console.error('Erro ao processar o login:', error);
-    return NextResponse.json({ message: 'Internal server error' }, { status: 500 });
+    return NextResponse.json({ message: 'Erro interno no servidor' }, { status: 500 });
   }
 }

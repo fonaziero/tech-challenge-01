@@ -3,7 +3,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Transaction } from '@/app/interfaces/transaction';
 import { handleFetchError } from '@/app/utils/formatters';
-import { fetchTransactionHistory } from '@/app/services/transactionService';
 import { handleScroll } from '@/app/utils/scroll';
 import { Header } from './header';
 import History from './history';
@@ -33,7 +32,11 @@ export default function TransactionHistory({ updateHistoryTrigger }: Transaction
   const loadMoreHistory = async (newOffset: number) => {
     setLoading(true);
     try {
-      const newHistory = await fetchTransactionHistory(newOffset, LIMIT);
+      const response = await fetch(`/api/dashboard/transactionalHistory?offset=${newOffset}&limit=${LIMIT}`);
+      if (!response.ok) {
+        throw new Error('Falha ao buscar o extrato');
+      }
+      let newHistory = await response.json();
       if (newHistory.length < LIMIT) {
         setHasMore(false);
       }
@@ -56,12 +59,12 @@ export default function TransactionHistory({ updateHistoryTrigger }: Transaction
   }, [offset]);
 
   return (
-    <div className="flex-1 flex p-4 md:p-8 lg:p-0">
+    <div className="flex-1 flex p-0">
       <div
         ref={containerRef}
         onScroll={() => handleScroll(containerRef, loading, hasMore, setOffset, LIMIT)}
-        className="bg-white rounded-lg shadow-md w-full p-8 pt-0 lg:min-w-[282px] lg:h-full lg:min-h-screen lg:mt-8 overflow-y-auto"
-        style={{ maxHeight: '500px', }}
+        className="bg-white rounded-lg shadow-md w-full p-8 pt-0 lg:min-w-[282px] lg:h-full lg:min-h-screen overflow-y-auto"
+        style={{ maxHeight: '500px' }}
       >
         <Header />
         <ul className="space-y-4">

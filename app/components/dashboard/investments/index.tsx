@@ -70,27 +70,25 @@ export default function InvestmentsCard() {
   };
 
   return (
-    <SecondCardContainer>
-      <div className="flex flex-col gap-5 w-full">
-        <h3 className="text-lg font-bold text-black">Investimentos</h3>
-        <span className="text-lg text-darkBlue">Total: R$ 50.000,00</span>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 w-full">
-          <div className="flex flex-col bg-darkBlue w-full min-h-[95px] h-full items-center justify-center gap-3 rounded-lg">
-            <h4 className="text-sm text-white">Renda Fixa</h4>
-            <span className="text-md text-white">R$ 36.000,00</span>
-          </div>
-          <div className="flex flex-col bg-darkBlue w-full min-h-[95px] h-full items-center justify-center gap-3 rounded-lg">
-            <h4 className="text-sm text-white">Renda variável</h4>
-            <span className="text-md text-white">R$ 14.000,00</span>
-          </div>
+    <div className="flex flex-col gap-5 w-full">
+      <h3 className="text-lg font-bold text-black">Investimentos</h3>
+      <span className="text-lg text-darkBlue">Total: R$ 50.000,00</span>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 w-full">
+        <div className="flex flex-col bg-darkBlue w-full min-h-[95px] h-full items-center justify-center gap-3 rounded-lg">
+          <h4 className="text-sm text-white">Renda Fixa</h4>
+          <span className="text-md text-white">R$ 36.000,00</span>
         </div>
-        <h4 className="text-md text-black">Estatísticas</h4>
-        <div className="bg-darkBlue flex lg:flex-row flex-col items-center justify-center p-5 rounded-lg w-full h-full">
-          <div className="w-full  flex items-center justify-center">
-            <Doughnut data={data} options={options as any}  />
-          </div>
+        <div className="flex flex-col bg-darkBlue w-full min-h-[95px] h-full items-center justify-center gap-3 rounded-lg">
+          <h4 className="text-sm text-white">Renda variável</h4>
+          <span className="text-md text-white">R$ 14.000,00</span>
         </div>
       </div>
-    </SecondCardContainer>
+      <h4 className="text-md text-black">Estatísticas</h4>
+      <div className="bg-darkBlue flex lg:flex-row flex-col items-center justify-center rounded-lg w-full h-full">
+        <div className="w-full  flex items-center justify-center">
+          <Doughnut data={data} options={options as any} />
+        </div>
+      </div>
+    </div>
   );
 }

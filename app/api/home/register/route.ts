@@ -5,7 +5,7 @@ export async function POST(request: Request) {
   const { name, email, password } = await request.json();
 
   if (!name || !email || !password) {
-    return NextResponse.json({ message: 'Name, email, and password are required' }, { status: 400 });
+    return NextResponse.json({ message: 'Nome, email e senha são obrigatórios' }, { status: 400 });
   }
 
   try {
@@ -13,7 +13,7 @@ export async function POST(request: Request) {
     const existingUsers = await existingUserRes.json();
 
     if (existingUsers.length > 0) {
-      return NextResponse.json({ message: 'Email already exists' }, { status: 400 });
+      return NextResponse.json({ message: 'Email já cadastrado' }, { status: 400 });
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -33,14 +33,14 @@ export async function POST(request: Request) {
     });
 
     if (!createUserRes.ok) {
-      throw new Error('Failed to create user');
+      throw new Error('Falha ao criar o usuário');
     }
 
     const createdUser = await createUserRes.json();
 
-    return NextResponse.json({ message: 'User registered successfully', user: createdUser }, { status: 201 });
+    return NextResponse.json({ message: 'Usuário registrado com sucesso', user: createdUser }, { status: 201 });
   } catch (error) {
     console.error('Erro ao processar o registro:', error);
-    return NextResponse.json({ message: 'Internal server error' }, { status: 500 });
+    return NextResponse.json({ message: 'Erro interno no servidor' }, { status: 500 });
   }
 }

@@ -51,7 +51,6 @@ const LoginModal: React.FC<LoginModalProps> = ({
                 }));
                 onClose();
                 router.push('/dashboard');
-                console.log('Login bem-sucedido:', data.user);
             }
         } catch (err) {
             console.error('Erro ao fazer a requisição:', err);

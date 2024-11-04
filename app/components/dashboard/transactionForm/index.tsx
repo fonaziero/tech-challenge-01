@@ -66,6 +66,19 @@ export default function TransactionForm({ user, updateUser, onTransactionSubmit 
         }
 
         const newBalance = user.balance + transactionValue;
+
+        const patchResponse = await fetch(`/api/dashboard/user?userId=${user.id}`, {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ balance: newBalance }),
+        });
+
+        if (!patchResponse.ok) {
+          throw new Error('Falha ao atualizar o saldo do usuário');
+        }
+
         const updatedUser = {
           ...user,
           balance: newBalance,
@@ -73,15 +86,15 @@ export default function TransactionForm({ user, updateUser, onTransactionSubmit 
 
         localStorage.setItem('user', JSON.stringify(updatedUser));
         updateUser();
-        onTransactionSubmit(); // Atualiza o histórico de transações
+        onTransactionSubmit();
 
-        console.log('Transação concluída:', updatedUser);
       } catch (error) {
         console.error('Erro ao adicionar transação:', error);
         setError('Erro ao adicionar a transação');
       }
     }
   };
+
 
   const options = [
     { value: 'Câmbio de Moeda', label: 'Câmbio de Moeda' },
@@ -90,7 +103,7 @@ export default function TransactionForm({ user, updateUser, onTransactionSubmit 
   ];
 
   return (
-    <SecondCardContainer>
+    <>
       <h3 className="text-xl mb-4">Nova transação</h3>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
@@ -119,7 +132,7 @@ export default function TransactionForm({ user, updateUser, onTransactionSubmit 
           <img src={CreditCard.src} alt="img" className="lg:hidden -z-10" />
         </div>
       </form>
-    </SecondCardContainer>
+    </>
   );
 }
 

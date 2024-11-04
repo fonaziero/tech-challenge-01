@@ -1,65 +1,65 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { User } from "@/app/interfaces/user";
 import BalanceCard from "../balanceCard";
 import Sidebar from "../sidebar";
 import TransactionHistory from "../transactionalHistory";
-import TransactionForm from "../transactionForm";
 import { useRouter } from "next/navigation";
-import InvestmentsCard from "../investments";
-import OtherServicesCard from "../other-services";
+import SecondCardContainer from "../card/secondContainer";
+import CardContainer from "../card/container";
+import { getStoredUser } from "@/app/utils/user";
+import { Section } from "@/app/types/section";
+import TransactionSection from "./transactionSection";
 
-export default function Dashboard() {
+type DashboardProps = {
+  currentSection: Section;
+};
+
+export default function Dashboard({ currentSection }: DashboardProps) {
   const router = useRouter();
   const [storedUser, setStoredUser] = useState<User | null>(null);
-  const [activeSection, setActiveSection] = useState<string>("dashboard");
-  const [transactionHistoryUpdated, setTransactionHistoryUpdated] = useState<boolean>(false);
-
-  const fetchUserData = () => {
-    const user = localStorage.getItem("user");
-    if (user) {
-      setStoredUser(JSON.parse(user));
-    } else {
-      router.push("/");
-    }
-  };
+  const [activeSection, setActiveSection] = useState<Section>(currentSection);
+  const [transactionHistoryUpdated, setTransactionHistoryUpdated] = useState(false);
 
   useEffect(() => {
-    fetchUserData();
+    setStoredUser(getStoredUser(router));
+  }, [router]);
+
+  useEffect(() => {
+    setActiveSection(currentSection);
+  }, [currentSection]);
+
+  const handleTransactionUpdate = useCallback(() => {
+    setTransactionHistoryUpdated((prev) => !prev);
   }, []);
 
-  const handleTransactionUpdate = () => {
-    setTransactionHistoryUpdated(!transactionHistoryUpdated);
-  };
-
-  const renderTransactionComponent = (user: User) => {
-    switch (activeSection) {
-      case "dashboard":
-        return <TransactionForm user={user} updateUser={fetchUserData} onTransactionSubmit={handleTransactionUpdate} />;
-      case "transactions":
-        return <TransactionForm user={user} updateUser={fetchUserData} onTransactionSubmit={handleTransactionUpdate} />;
-      case "investments":
-        return <InvestmentsCard />;
-      case "other-services":
-        return <OtherServicesCard />;
-      default:
-        return null;
-    }
-  };
+  if (!storedUser) return null;
 
   return (
     <div className="flex flex-col lg:flex-row min-h-screen lg:m-auto">
-      <Sidebar activeSection={activeSection} setActiveSection={setActiveSection} />
-      <main className="flex-1 p-4 md:p-8 flex flex-col space-y-8 ">
-        <div className="flex flex-col lg:flex-row lg:space-x-8">
-          <div className="flex-1">
-            {storedUser && <BalanceCard user={storedUser} />}
-            {storedUser && renderTransactionComponent(storedUser)}
+      <main className="flex-1 p-4 md:p-8 flex flex-col space-y-8">
+        <div className="flex flex-col lg:flex-row lg:space-x-8 gap-y-8">
+          <Sidebar
+            activeSection={activeSection}
+            setActiveSection={setActiveSection}
+          />
+          <div className="flex-1 flex justify-between flex-col gap-y-8">
+            <CardContainer className="bg-darkBlue text-white items-center md:items-start">
+              <BalanceCard user={storedUser} />
+            </CardContainer>
+            <SecondCardContainer>
+              <TransactionSection
+                activeSection={activeSection}
+                user={storedUser}
+                onTransactionUpdate={handleTransactionUpdate}
+                updateUser={() => setStoredUser(getStoredUser(router))}
+              />
+            </SecondCardContainer>
           </div>
+          <TransactionHistory updateHistoryTrigger={transactionHistoryUpdated} />
         </div>
       </main>
-      <TransactionHistory updateHistoryTrigger={transactionHistoryUpdated} />
     </div>
   );
 }

@@ -4,7 +4,7 @@
       "id": "d81c",
       "name": "teste",
       "email": "teste@teste.pt",
-      "balance": 2600,
+      "balance": 2020,
       "createdAt": "2021-11-18",
       "updatedAt": "2021-11-18",
       "deletedAt": null,
@@ -12,34 +12,6 @@
     }
   ],
   "transactionalHistory": [
-    {
-      "id": "1",
-      "userId": "d81c",
-      "value": 150,
-      "type": "Depósito",
-      "date": "2022-11-18"
-    },
-    {
-      "id": "2",
-      "userId": "d81c",
-      "value": 100,
-      "type": "Depósito",
-      "date": "2022-11-21"
-    },
-    {
-      "id": "3",
-      "userId": "d81c",
-      "value": 50,
-      "type": "Depósito",
-      "date": "2021-11-21"
-    },
-    {
-      "id": "4",
-      "userId": "d81c",
-      "value": -500,
-      "type": "Transferência",
-      "date": "2021-11-21"
-    },
     {
       "id": "208d",
       "userId": "d81c",
@@ -127,6 +99,78 @@
       "type": "Transferência",
       "method": "DOC/TED",
       "date": "2024-10-30T03:53:41.067Z"
+    },
+    {
+      "id": "eec0",
+      "userId": "d81c",
+      "value": 100,
+      "type": "Depósito",
+      "method": "DOC/TED",
+      "date": "2024-10-31T01:02:23.117Z"
+    },
+    {
+      "id": "8c61",
+      "userId": "d81c",
+      "value": 50,
+      "type": "Depósito",
+      "method": "DOC/TED",
+      "date": "2024-11-01T22:19:57.393Z"
+    },
+    {
+      "id": "2983",
+      "userId": "d81c",
+      "value": -50,
+      "type": "Transferência",
+      "method": "DOC/TED",
+      "date": "2024-11-01T22:20:07.049Z"
+    },
+    {
+      "id": "a1f1",
+      "userId": "d81c",
+      "value": 300,
+      "type": "Depósito",
+      "method": "DOC/TED",
+      "date": "2024-11-01T22:20:21.828Z"
+    },
+    {
+      "id": "3f34",
+      "userId": "d81c",
+      "value": -900,
+      "type": "Transferência",
+      "method": "DOC/TED",
+      "date": "2024-11-02T01:26:49.739Z"
+    },
+    {
+      "id": "1970",
+      "userId": "d81c",
+      "value": 900,
+      "type": "Depósito",
+      "method": "DOC/TED",
+      "date": "2024-11-02T01:27:04.348Z"
+    },
+    {
+      "id": "b2bd",
+      "userId": "d81c",
+      "value": -600,
+      "type": "Transferência",
+      "method": "DOC/TED",
+      "date": "2024-11-02T22:02:15.142Z"
+    },
+    {
+      "id": "b7c8",
+      "userId": "d81c",
+      "value": 10,
+      "type": "Depósito",
+      "method": "DOC/TED",
+      "date": "2024-11-04T22:55:58.123Z"
+    },
+    {
+      "id": "88be",
+      "userId": "d81c",
+      "value": 10,
+      "type": "Depósito",
+      "method": "DOC/TED",
+      "date": "2024-11-04T23:56:43.529Z"
     }
   ]
 }

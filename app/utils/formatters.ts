@@ -1,7 +1,7 @@
 
 
 import { format } from "date-fns";
-import { Transaction } from "../components/dashboard/transactionalHistory";
+import { Transaction } from "../interfaces/transaction";
 
 export function formatTransactionData(item: any): Transaction | null {
     try {
@@ -17,6 +17,7 @@ export function formatTransactionData(item: any): Transaction | null {
         const monthName = monthNames[parsedDate.getMonth()];
 
         return {
+            id: item.id,
             date: formattedDate,
             month: monthName,
             type: item.type,
@@ -28,7 +29,14 @@ export function formatTransactionData(item: any): Transaction | null {
     }
 }
 
-// Function to handle fetch errors
+export const formatCurrencyBRL = (value: number): string => {
+    return new Intl.NumberFormat('pt-BR', {
+      style: 'currency',
+      currency: 'BRL',
+    }).format(value);
+  };
+  
+
 export function handleFetchError(error: unknown) {
     if (error instanceof Error) {
         if (error.name !== 'AbortError') {
