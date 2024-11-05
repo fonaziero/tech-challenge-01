@@ -42,7 +42,7 @@ export default function BalanceCard({ user }: BalanceCardProps) {
             <div className="mt-3">
               <p className="text-sm mt-2">Conta Corrente</p>
               <h1 className="text-xl mt-1">
-                {`R$ ${user.balance.toFixed(2)}`}
+                {`R$ ${user?.balance?.toFixed(2)}`}
               </h1>
             </div>
           </div>

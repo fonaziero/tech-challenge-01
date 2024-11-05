@@ -4,7 +4,7 @@
       "id": "d81c",
       "name": "teste",
       "email": "teste@teste.pt",
-      "balance": 2020,
+      "balance": 2100,
       "createdAt": "2021-11-18",
       "updatedAt": "2021-11-18",
       "deletedAt": null,
@@ -141,36 +141,10 @@
       "date": "2024-11-02T01:26:49.739Z"
     },
     {
-      "id": "1970",
-      "userId": "d81c",
-      "value": 900,
-      "type": "Depósito",
-      "method": "DOC/TED",
-      "date": "2024-11-02T01:27:04.348Z"
-    },
-    {
-      "id": "b2bd",
-      "userId": "d81c",
-      "value": -600,
-      "type": "Transferência",
-      "method": "DOC/TED",
-      "date": "2024-11-02T22:02:15.142Z"
-    },
-    {
-      "id": "b7c8",
-      "userId": "d81c",
-      "value": 10,
-      "type": "Depósito",
-      "method": "DOC/TED",
-      "date": "2024-11-04T22:55:58.123Z"
-    },
-    {
       "id": "88be",
-      "userId": "d81c",
-      "value": 10,
+      "value": null,
       "type": "Depósito",
-      "method": "DOC/TED",
-      "date": "2024-11-04T23:56:43.529Z"
+      "date": "04/11/2024"
     }
   ]
 }

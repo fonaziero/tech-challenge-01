@@ -31,11 +31,25 @@ export function formatTransactionData(item: any): Transaction | null {
 
 export const formatCurrencyBRL = (value: number): string => {
     return new Intl.NumberFormat('pt-BR', {
-      style: 'currency',
-      currency: 'BRL',
+        style: 'currency',
+        currency: 'BRL',
     }).format(value);
-  };
+};
+
+export const parseCurrencyToFloat = (valueString: string) => {
+    let sanitizedValue = valueString.replace(/[^\d,.-]/g, '');
   
+    sanitizedValue = sanitizedValue.replace(',', '.');
+  
+    const value = parseFloat(sanitizedValue);
+  
+    if (isNaN(value)) {
+      throw new Error('Valor inválido.');
+    }
+  
+    return value;
+  };
+
 
 export function handleFetchError(error: unknown) {
     if (error instanceof Error) {

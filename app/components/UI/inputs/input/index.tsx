@@ -3,7 +3,7 @@ import React from 'react';
 interface FormInputProps {
     label?: string;
     type: string;
-    value: string;
+    value: string | any;
     placeholder: string;
     error?: string;
     onChange: (value: any) => void;
@@ -11,6 +11,7 @@ interface FormInputProps {
     className?: string;
     required?: boolean;
     borderColor?: string;
+    disabled?: boolean;
 }
 
 const FormInput: React.FC<FormInputProps> = ({
@@ -23,6 +24,7 @@ const FormInput: React.FC<FormInputProps> = ({
     onBlur,
     className = '',
     borderColor = 'lightGray',
+    disabled = false,
 }) => {
     const borderClass = error ? 'border-red' : `border-${borderColor}`;
 
@@ -40,6 +42,7 @@ const FormInput: React.FC<FormInputProps> = ({
                 onBlur={onBlur}
                 className={`block w-full p-2 outline-none border-2 ${borderClass} rounded-md text-black`}
                 placeholder={placeholder}
+                disabled={disabled ? true : undefined}
             />
             {error && <p className="text-red text-sm mt-1">{error}</p>}
         </div>

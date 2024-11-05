@@ -7,6 +7,7 @@ import Button from '../../UI/buttons/button/button';
 import FormInput from '../../UI/inputs/input';
 import SecondCardContainer from '../card/secondContainer';
 import { User } from '@/app/interfaces/user';
+import { options } from '@/app/types/transactionType';
 
 type TransactionFormProps = {
   user: User;
@@ -94,13 +95,6 @@ export default function TransactionForm({ user, updateUser, onTransactionSubmit 
       }
     }
   };
-
-
-  const options = [
-    { value: 'Câmbio de Moeda', label: 'Câmbio de Moeda' },
-    { value: 'DOC/TED', label: 'DOC/TED' },
-    { value: 'Empréstimo e Financiamento', label: 'Empréstimo e Financiamento' },
-  ];
 
   return (
     <>

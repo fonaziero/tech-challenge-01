@@ -9,14 +9,16 @@ import History from './history';
 
 interface TransactionHistoryProps {
   updateHistoryTrigger: boolean;
+  updateUser: () => void;
 }
 
-export default function TransactionHistory({ updateHistoryTrigger }: TransactionHistoryProps) {
+export default function TransactionHistory({ updateHistoryTrigger, updateUser }: TransactionHistoryProps) {
   const [history, setHistory] = useState<Transaction[]>([]);
   const [offset, setOffset] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(false);
   const [hasMore, setHasMore] = useState<boolean>(true);
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const [updateTrigger, setUpdateTrigger] = useState<boolean>(false);
   const LIMIT = 10;
 
   useEffect(() => {
@@ -27,7 +29,7 @@ export default function TransactionHistory({ updateHistoryTrigger }: Transaction
       await loadMoreHistory(0);
     };
     loadHistory();
-  }, [updateHistoryTrigger]);
+  }, [updateHistoryTrigger, updateTrigger]);
 
   const loadMoreHistory = async (newOffset: number) => {
     setLoading(true);
@@ -66,7 +68,11 @@ export default function TransactionHistory({ updateHistoryTrigger }: Transaction
         className="bg-white rounded-lg shadow-md w-full p-8 pt-0 lg:min-w-[282px] lg:h-full lg:min-h-screen overflow-y-auto"
         style={{ maxHeight: '500px' }}
       >
-        <Header />
+        <Header
+          history={history}
+          onUpdateHistory={() => setUpdateTrigger((prev) => !prev)}
+          updateUser={updateUser}
+        />
         <ul className="space-y-4">
           {history.length > 0 ? (
             history.map((item) => (

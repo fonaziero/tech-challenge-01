@@ -30,9 +30,14 @@ export default function Dashboard({ currentSection }: DashboardProps) {
     setActiveSection(currentSection);
   }, [currentSection]);
 
+  const updateUser = useCallback(() => {
+    setStoredUser(getStoredUser(router));
+  }, [router]);
+
   const handleTransactionUpdate = useCallback(() => {
     setTransactionHistoryUpdated((prev) => !prev);
-  }, []);
+    updateUser();
+  }, [updateUser]);
 
   if (!storedUser) return null;
 
@@ -53,11 +58,14 @@ export default function Dashboard({ currentSection }: DashboardProps) {
                 activeSection={activeSection}
                 user={storedUser}
                 onTransactionUpdate={handleTransactionUpdate}
-                updateUser={() => setStoredUser(getStoredUser(router))}
+                updateUser={updateUser}
               />
             </SecondCardContainer>
           </div>
-          <TransactionHistory updateHistoryTrigger={transactionHistoryUpdated} />
+          <TransactionHistory
+            updateHistoryTrigger={transactionHistoryUpdated}
+            updateUser={updateUser}
+          />
         </div>
       </main>
     </div>

@@ -9,6 +9,7 @@ interface ModalProps {
   width?: string;
   height?: string;
   hasFooter?: boolean;
+  className?: string;
 }
 
 const Modal: React.FC<ModalProps> = ({
@@ -20,6 +21,7 @@ const Modal: React.FC<ModalProps> = ({
   width = "600px",
   height = "auto",
   hasFooter = true,
+  className
 }) => {
   if (!isOpen) return null;
 
@@ -38,7 +40,7 @@ const Modal: React.FC<ModalProps> = ({
 
   return (
     <div
-      className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50"
+      className={"fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 " + className}
       onClick={handleOverlayClick}
     >
       <div
