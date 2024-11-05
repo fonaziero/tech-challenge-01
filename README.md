@@ -77,29 +77,22 @@ Para executar este projeto localmente, certifique-se de que **Node.js v21.7.1** 
 ```
 tech-challenge/
   |-- .next/                 # Diretório de build do Next.js 🏗️
-  |-- app/
+  |-- app/                   # Diretório principal da aplicação
       |-- api/               # Rotas da API 🌐
+      |-- assets/            # Recursos estáticos (ex.: imagens, ícones) 🖼️
+      |-- components/        # Componentes reutilizáveis de UI 🔄
           |-- dashboard/
-          |-- home/
-  |-- assets/                # Recursos estáticos (ex.: imagens, ícones) 🖼️
-  |-- components/            # Componentes reutilizáveis de UI 🔄
-      |-- dashboard/
-      |-- home/
-      |-- UI/
-  |-- dashboard/
-      |-- page.tsx           # Componente da página de Dashboard 📄
-  |-- interfaces/            # Interfaces TypeScript 📑
-      |-- transaction.ts
-      |-- user.ts
-  |-- services/              # Serviços para requisições de API 🔌
-      |-- transactionService.ts
-  |-- styles/                # Arquivos SCSS e TailwindCSS 🎨
-      |-- button.module.scss
-      |-- dropdown-select.module.scss
-  |-- utils/                 # Funções utilitárias 🛠️
-      |-- formatters.ts
-      |-- scroll.ts
-  |-- public/                # Recursos estáticos (ex.: favicon, imagens) 🖼️
+          |-- UI/
+      |-- dashboard/         # Páginas e componentes do Dashboard 📄
+      |-- interfaces/        # Interfaces TypeScript 📑
+      |-- styles/            # Arquivos SCSS e TailwindCSS 🎨
+      |-- types/             # Tipos e enums TypeScript 📝
+      |-- utils/             # Funções utilitárias 🛠️
+      |-- favicon.ico        # Favicon do site 🖼️
+      |-- globals.scss       # Estilos globais 🌐
+      |-- layout.tsx         # Layout padrão para o Next.js
+      |-- not-found.tsx      # Página de erro 404 ❌
+      |-- page.tsx           # Página principal 📄
   |-- db.json                # Banco de dados simulado do JSON Server 📊
   |-- next.config.js         # Configuração do Next.js ⚙️
   |-- postcss.config.mjs     # Configuração do PostCSS ✨
@@ -110,7 +103,6 @@ tech-challenge/
 
 ## 🖥️ Uso
 Após executar `npm run dev`, abra seu navegador 🌐 e acesse `http://localhost:3000` para visualizar o aplicativo em funcionamento. Para acessar a API simulada, o `json-server` estará disponível em `http://localhost:3001`.
-
 
 ## 📧 Contato
 Para quaisquer consultas, entre em contato com o mantenedor do projeto em [victorcarnevale@yahoo.com.br](mailto:victorcarnevale@yahoo.com.br).
