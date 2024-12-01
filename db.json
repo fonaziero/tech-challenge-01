@@ -4,7 +4,7 @@
       "id": "d81c",
       "name": "teste",
       "email": "teste@teste.pt",
-      "balance": 2100,
+      "balance": 2200,
       "createdAt": "2021-11-18",
       "updatedAt": "2021-11-18",
       "deletedAt": null,
@@ -139,12 +139,6 @@
       "type": "Transferência",
       "method": "DOC/TED",
       "date": "2024-11-02T01:26:49.739Z"
-    },
-    {
-      "id": "88be",
-      "value": null,
-      "type": "Depósito",
-      "date": "04/11/2024"
     }
   ]
 }
